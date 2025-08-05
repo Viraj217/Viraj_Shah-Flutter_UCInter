@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:spiderman/components/my_text_field.dart';
 import 'package:spiderman/components/sign_in_button.dart';
 import 'package:spiderman/components/square_tile.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
@@ -17,7 +23,11 @@ class MyApp extends StatelessWidget {
   final passwordController = TextEditingController();
 
   //sign user in method
-  void signUserIn() {}
+  void signUserIn() {
+
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
