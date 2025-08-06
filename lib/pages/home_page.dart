@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  void _signOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacementNamed(context, '/login');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black87,
+      appBar: AppBar(
+        title: Text('Home Page'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () => _signOut(context),
+            tooltip: 'Logout',
+          ),
+        ],
+      ),
       body:
         Card(
           margin: EdgeInsets.all(20.0),
@@ -14,7 +30,6 @@ class HomePage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              // mainAxisSize: MainAxisSize.values, // To make the card wrap its content
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
